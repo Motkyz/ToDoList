@@ -21,7 +21,8 @@ class MainFragment: Fragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
 
     private val adapter = TasksAdapter(
-        ::onTaskStateChangeClick
+        ::onTaskStateChangeClick,
+        ::onTaskDeleteClick
     )
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -59,6 +60,16 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             .setSingleChoiceItems(states, index) { dialog, newState ->
                 index = newState
             }.show()
+    }
+
+    private fun onTaskDeleteClick(task: TaskEntity){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Удалить задачу?")
+            .setNeutralButton("Нет") {_, _ ->}
+            .setPositiveButton("Да") {dialog, _ ->
+                viewModel.deleteTask(task)
+            }
+            .show()
     }
 
     override fun onAttach(context: Context) {

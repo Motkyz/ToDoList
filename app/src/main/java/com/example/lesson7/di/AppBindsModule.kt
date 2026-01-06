@@ -9,6 +9,8 @@ import com.example.lesson7.data.db.TasksDAO
 import com.example.lesson7.data.db.TasksDatabase
 import com.example.lesson7.domain.CreateTaskUseCase
 import com.example.lesson7.domain.CreateTaskUseCaseImpl
+import com.example.lesson7.domain.DeleteTaskUseCase
+import com.example.lesson7.domain.DeleteTaskUseCaseImpl
 import com.example.lesson7.domain.GetTaskUseCase
 import com.example.lesson7.domain.GetTasksUseCaseImpl
 import com.example.lesson7.domain.UpdateTaskStateUseCase
@@ -35,6 +37,10 @@ interface AppBindsModule {
     @Binds
     @Singleton
     fun bindCreateTaskUseCase(impl: CreateTaskUseCaseImpl): CreateTaskUseCase
+
+    @Binds
+    @Singleton
+    fun bindDeleteTaskUseCase(impl: DeleteTaskUseCaseImpl): DeleteTaskUseCase
 
     companion object {
         @Provides

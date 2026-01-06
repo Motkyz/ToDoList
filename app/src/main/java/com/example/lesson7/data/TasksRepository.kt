@@ -10,6 +10,7 @@ interface TasksRepository {
     fun getTasks(): Flow<List<TaskEntity>>
     suspend fun updateTaskState(taskEntity: TaskEntity, taskState: TaskState)
     suspend fun createTask(taskEntity: TaskEntity)
+    suspend fun deleteTask(taskEntity: TaskEntity)
 }
 
 class TasksRepositoryImp @Inject constructor(
@@ -27,6 +28,12 @@ class TasksRepositoryImp @Inject constructor(
 
     override suspend fun createTask(taskEntity: TaskEntity) {
         dao.upsertTask(
+            taskEntity
+        )
+    }
+
+    override suspend fun deleteTask(taskEntity: TaskEntity) {
+        dao.deleteTask(
             taskEntity
         )
     }

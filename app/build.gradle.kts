@@ -60,12 +60,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:${navigation}")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:${navigation}")
 
-    implementation("io.coil-kt.coil3:coil:3.3.0")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
-
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
 
     implementation("com.google.dagger:dagger:2.56.2")
     kapt("com.google.dagger:dagger-compiler:2.56.2")

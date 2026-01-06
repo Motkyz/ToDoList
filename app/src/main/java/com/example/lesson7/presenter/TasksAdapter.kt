@@ -11,7 +11,8 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class TasksAdapter(
-    private val onTaskStateChangeClick: (TaskEntity) -> Unit
+    private val onTaskStateChangeClick: (TaskEntity) -> Unit,
+    private val onTaskDeleteClick: (TaskEntity) -> Unit
 ): ListAdapter<TaskEntity, TasksAdapter.TaskViewHolder>(TasksDivUtil()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,6 +23,7 @@ class TasksAdapter(
         var binding = ItemTaskBinding.inflate(inflater, parent, false)
         return TaskViewHolder(
             onTaskStateChangeClick,
+            onTaskDeleteClick,
             binding
         )
     }
@@ -35,6 +37,7 @@ class TasksAdapter(
 
     class TaskViewHolder(
         private val onTaskStateChangeClick: (TaskEntity) -> Unit,
+        private val onTaskDeleteClick: (TaskEntity) -> Unit,
         private val binding: ItemTaskBinding
     ): RecyclerView.ViewHolder(binding.root){
         fun bind(task: TaskEntity) = with(binding){
@@ -47,7 +50,9 @@ class TasksAdapter(
             }
             itemTaskStartTime.text = formatter.format(task.startTime)
             itemTaskEndTime.text = formatter.format(task.endTime)
-
+            itemTaskDelete.setOnClickListener {
+                onTaskDeleteClick(task)
+            }
         }
     }
 
